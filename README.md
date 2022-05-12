@@ -7,7 +7,7 @@
  - Install rust-analyzer for rust complete
  - Install jedi_language_server for python complete
  
-## Configuration
+## The Structure of Configuration
 
  ```bash
 ├── init.lua
@@ -29,3 +29,9 @@
 │   │   └── theme.lua
 │   └── plugins.lua
  ```
+
+## Install 
+
+```bash
+git clone https://github.com/zimo-geek/nvim-config.git $HOME/.config/nvim
+```
