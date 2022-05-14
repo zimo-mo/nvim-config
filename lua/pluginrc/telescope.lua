@@ -52,5 +52,4 @@ vim.api.nvim_set_keymap('n', '<leader>gd', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>ds', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ws', [[<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>dws', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ca', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ts', [[<cmd>lua require('telescope.builtin').treesitter()<CR>]], { noremap = true, silent = true})
