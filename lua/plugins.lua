@@ -59,14 +59,12 @@ local plugins = {
   },
   -- NvimTree
   {
-    "kyazdani42/nvim-tree.lua",
-    -- event = "BufWinOpen",
-    -- cmd = "NvimTreeToggle",
+    "luukvbaal/nnn.nvim",
   },
   -- Comments
   {
     "numToStr/Comment.nvim",
-    event = "BufRead",
+  -- event = "BufRead",
   },
   -- Status Line and Bufferline
   {

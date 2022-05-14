@@ -30,8 +30,12 @@
 │   └── plugins.lua
  ```
 
-## Install 
+## Installation
 
 ```bash
 git clone https://github.com/zimo-geek/nvim-config.git $HOME/.config/nvim
 ```
+
+## Other
+
+vim 8.0+ see: [viplugins](https://github.com/zimo-geek/viplugins)
