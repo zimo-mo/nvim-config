@@ -6,8 +6,6 @@ vim.o.fileencoding = 'utf-8'
 vim.o.hlsearch = false
 --Enable mouse mode
 vim.o.mouse = 'a'
---Enable break indent
-vim.o.breakindent = true
 --Case insensitive searching UNLESS /C or capital in search vim.o.ignorecase = true vim.o.smartcase = true Decrease update time
 vim.o.updatetime = 250
 
@@ -38,6 +36,8 @@ vim.opt.shiftwidth = 4        -- shift 4 spaces when tab
 vim.opt.tabstop = 4           -- 1 tab == 4 spaces
 vim.opt.smartindent = true    -- autoindent new lines
 vim.opt.autoindent = true
+--Enable break indent
+vim.o.breakindent = true
 
 -- Enabling ruler and statusline.
 vim.opt.ruler = true
@@ -52,6 +52,7 @@ vim.cmd([[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]])
 -- 2 spaces for selected filetypes
 vim.cmd [[
   autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
+  autocmd FileType python setlocal shiftwidth=4 tabstop=4
 ]]
 
 vim.cmd([[

@@ -14,7 +14,7 @@ require('indent_blankline').setup {
     'markdown',
     'text',
     'terminal',
-    'lspinfo',
+    -- 'lspinfo',
     'packer'
   },
   buftype_exclude = {
