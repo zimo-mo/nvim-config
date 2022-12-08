@@ -1,5 +1,6 @@
 local plugins = {
   -- Packer can manage itself as an optional plugin
+  {"jsfaint/gen_tags.vim"},
   { "wbthomason/packer.nvim"},
   { "neovim/nvim-lspconfig" },
   { "nvim-lua/plenary.nvim" },
@@ -52,6 +53,7 @@ local plugins = {
     -- event = "InsertEnter",
   },
 
+  "ray-x/lsp_signature.nvim",
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",

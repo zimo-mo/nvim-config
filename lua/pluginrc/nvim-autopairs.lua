@@ -79,3 +79,11 @@ npairs.add_rules {
     :with_move(cond.none())
     :with_del(cond.none())
 }
+
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on(
+ 'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
