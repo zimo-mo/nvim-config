@@ -19,6 +19,8 @@ end
 
 -- nvim-cmp setup
 local cmp = require('cmp')
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -30,8 +32,8 @@ cmp.setup {
       documentation = cmp.config.window.bordered(),
     },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+    ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -42,7 +44,7 @@ cmp.setup {
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
+        cmp.select_next_item(select_opts)
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
@@ -54,7 +56,7 @@ cmp.setup {
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item()
+        cmp.select_prev_item(select_opts)
       elseif luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
