@@ -19,7 +19,7 @@ end
 
 -- nvim-cmp setup
 local cmp = require('cmp')
-local select_opts = {behavior = cmp.SelectBehavior.Select}
+local select_opts = {behavior = cmp.SelectBehavior.select}
 
 cmp.setup {
   snippet = {
@@ -65,17 +65,17 @@ cmp.setup {
     end, { "i", "s" }),
   },
   sources = {
-    { name = 'nvim_lsp', keyword_length = 2 },
+    { name = 'nvim_lsp' },
     { name = 'luasnip', keyword_length = 2, options = { use_show_condition = true } },
     { name = 'path' },
-    { name = 'buffer', keyword_length = 2 },
-    { name = 'cmdline' },
-    { name = 'omni', keyword_length = 2 },
+    { name = 'buffer' },
+    -- { name = 'cmdline' },
+    { name = 'omni' },
   },
-  completion = {
-      ---@usage The minimum length of a word to complete on.
-      keyword_length = 2,
-    },
+  -- completion = {
+  --     ---@usage The minimum length of a word to complete on.
+  --     keyword_length = 2,
+  --   },
   formatting = {
     format = function(entry, vim_item)
       vim_item.menu = entry:get_completion_item().detail

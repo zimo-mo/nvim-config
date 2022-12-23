@@ -18,24 +18,10 @@ require('telescope').setup {
                                        -- the default case_mode is "smart_case"
     }
   },
-  --- ctags_outline = {
-  ---           --ctags option
-  ---           ctags = {'ctags'},
-  ---           --ctags filetype option
-  ---           set_ft_opt = function(ft_opt)
-  ---               ft_opt.vim = '--vim-kinds=fk'
-  ---               ft_opt.lua = '--lua-kinds=fk'
-  ---               ft_opt.c = "--c-kinds=fp"
-  ---               ft_opt.cpp = "--c++-kinds=fp --language-force=C++"
-  ---               ft_opt.python = "--python-kinds=fm --language-force=Python"
-  ---           end
-  ---       }
 }
 
 
 require('telescope').load_extension('fzf')
--- require('telescope').extensions.ctags_outline.outline()
--- require('telescope').load_extension('ctags_outline')
 
 --Add leader shortcuts
 vim.api.nvim_set_keymap('n', 'fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
