@@ -1,6 +1,6 @@
 local plugins = {
   -- Packer can manage itself as an optional plugin
-  {"jsfaint/gen_tags.vim"},
+  -- {"jsfaint/gen_tags.vim"},
   { "wbthomason/packer.nvim"},
   { "neovim/nvim-lspconfig" },
   { "nvim-lua/plenary.nvim" },
@@ -89,6 +89,11 @@ local plugins = {
     "sainnhe/sonokai",
   --  event = 'VimEnter'
   },
+  -- vimtex
+  -- {
+  --   "lervag/vimtex",
+  --   opt = true,
+  -- }
 }
 
 -- starting

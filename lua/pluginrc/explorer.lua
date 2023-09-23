@@ -33,13 +33,13 @@ nnn.setup({
 	auto_close = true,  -- close tabpage/nvim when nnn is last window
 	-- replace_netrw = nil, -- or "explorer" / "picker"
     mappings = {
-        { "<C-t>", nnn.builtin.open_in_tab },       -- open file(s) in tab
-		{ "<C-s>", nnn.builtin.open_in_split },     -- open file(s) in split
-		{ "<C-v>", nnn.builtin.open_in_vsplit },    -- open file(s) in vertical split
-		{ "<C-p>", nnn.builtin.open_in_preview },   -- open file in preview split keeping nnn focused
-		{ "<C-y>", nnn.builtin.copy_to_clipboard }, -- copy file(s) to clipboard
-		{ "<C-w>", nnn.builtin.cd_to_path },        -- cd to file directory
-		{ "<C-e>", nnn.builtin.populate_cmdline },
+      { "<C-t>", nnn.builtin.open_in_tab },       -- open file(s) in tab
+		  { "<C-s>", nnn.builtin.open_in_split },     -- open file(s) in split
+		  { "<C-v>", nnn.builtin.open_in_vsplit },    -- open file(s) in vertical split
+		  { "<C-p>", nnn.builtin.open_in_preview },   -- open file in preview split keeping nnn focused
+		  { "<C-y>", nnn.builtin.copy_to_clipboard }, -- copy file(s) to clipboard
+		  { "<C-w>", nnn.builtin.cd_to_path },        -- cd to file directory
+		  { "<C-e>", nnn.builtin.populate_cmdline },
     },       -- table containing mappings, see below
 	windownav = {        -- window movement mappings to navigate out of nnn
 		left = "<C-w>h",
@@ -49,3 +49,6 @@ nnn.setup({
 	},
 	buflisted = false,   -- wether or not nnn buffers show up in the bufferlist
 })
+
+vim.keymap.set("n", "<leader>ne", "<cmd>NnnExplorer<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>np", "<cmd>NnnPicker<CR>", { noremap = true, silent = true })
