@@ -52,7 +52,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'rust_analyzer', 'bashls', 'cmake', 'pylsp', 'cmake', 'lua_ls', 'texlab', 'tsserver'}
+local servers = { 'clangd', 'rust_analyzer', 'bashls', 'cmake', 'lua_ls', 'texlab', 'tsserver', 'ruff_lsp'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -63,16 +63,20 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- nvim_lsp['pylsp'].setup{
---   settings = {
---     pylsp = {
---       plugins = {
---         jedi_completion = {
---           include_class_objects = true,
---           include_function_objects = true,
---         }
---       }
---     }
---   }
--- }
----
+nvim_lsp['pylsp'].setup{
+  settings = {
+    pylsp = {
+      plugins = {
+        -- jedi_completion = {
+        --   include_class_objects = true,
+        --   include_function_objects = true,
+        -- },
+        ruff = {
+					enabled = true,
+					extendSelect = { "I" },
+				}
+      }
+    }
+  }
+}
+
