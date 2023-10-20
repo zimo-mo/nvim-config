@@ -1,18 +1,23 @@
+  -- on_open = fun(t: Terminal), -- function to run when the terminal opens
+  -- on_close = fun(t: Terminal), -- function to run when the terminal closes
 local plugins = {
   -- Packer can manage itself as an optional plugin
   -- {"jsfaint/gen_tags.vim"},
-  { "wbthomason/packer.nvim"},
-  { "neovim/nvim-lspconfig" },
-  { "nvim-lua/plenary.nvim" },
+  -- { "wbthomason/packer.nvim"},
+  { "lewis6991/pckr.nvim" },
+  { "neovim/nvim-lspconfig", start = true },
+  { "nvim-lua/plenary.nvim", start = true },
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    requires = { 'nvim-lua/plenary.nvim' }
+    requires = { 'nvim-lua/plenary.nvim' },
+    start = true
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     requires = { "nvim-telescope/telescope.nvim" },
-    run = "make",
+    run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+    start = true,
   },
   -- Install nvim-cmp, and buffer source as a dependency
   {
@@ -21,43 +26,56 @@ local plugins = {
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
     },
+    start = true
   },
   {
     "rafamadriz/friendly-snippets",
+    start = true
   },
   {
     "L3MON4D3/LuaSnip",
     config = function()
       require("luasnip/loaders/from_vscode").lazy_load()
     end,
+    start = true
   },
   {
     "hrsh7th/cmp-nvim-lsp",
+    start = true
   },
   {
     "saadparwaiz1/cmp_luasnip",
+    start = true
   },
   {
     "hrsh7th/cmp-buffer",
+    start = true
   },
   {
     "hrsh7th/cmp-path",
+    start = true
   },
   {
     "hrsh7th/cmp-cmdline",
+    start = true
   },
 
   -- Autopairs
   {
     "windwp/nvim-autopairs",
     -- event = "InsertEnter",
+    start = true
   },
 
-  "ray-x/lsp_signature.nvim",
+  {
+    "ray-x/lsp_signature.nvim",
+    start = true
+  },
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    start = true
   },
   -- NvimTree
   {
@@ -66,11 +84,13 @@ local plugins = {
   -- Comments
   {
     "numToStr/Comment.nvim",
+    start = true,
   -- event = "BufRead",
   },
   -- Status Line and Bufferline
   {
     "nvim-lualine/lualine.nvim",
+    start = true
   },
   -- Terminal
   {
@@ -79,15 +99,18 @@ local plugins = {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    start = true
   },
   -- Formatter
   {
     "mhartington/formatter.nvim",
+    start = true
   },
   -- SchemaStore
   {
     "sainnhe/sonokai",
-  --  event = 'VimEnter'
+    --  event = 'VimEnter'
+    start = true
   },
   -- vimtex
   -- {
@@ -96,54 +119,25 @@ local plugins = {
   -- }
 }
 
--- starting
-local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+local function bootstrap_pckr()
+  local pckr_path = vim.fn.stdpath("data") .. "/site/pack/pckr/opt/pckr.nvim"
+
+  if not vim.loop.fs_stat(pckr_path) then
+    vim.fn.system({
+      'git',
+      'clone',
+      "--filter=blob:none",
+      'https://github.com/lewis6991/pckr.nvim',
+      pckr_path
+    })
+  end
+
+  vim.opt.rtp:prepend(pckr_path)
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+bootstrap_pckr()
 
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    -- Log:warn "skipping loading plugins until Packer is installed"
-  return
-end
 
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "single" }
-    end,
-  },
-}
-
--- packer.init(init_opts)
-packer.startup(function(use)
-  for _, plugin in ipairs(plugins) do
-    use(plugin)
-  end
-  -- if packer_bootstrap then
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
-  end
-end)
+ require('pckr').add(plugins)
